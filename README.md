@@ -1,11 +1,11 @@
 # OpenVigile - COS 🔭
 > Made for Contentstack's TechSurf 2023 <br> 
 > Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By Ayush Dubey (GSoC' 23 @ 52° North)
+> By [Ayush Dubey](https://ayushdubey.carrd.co/) (GSoC' 23 @ 52° North)
 
 ![OpenVigile](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/e22bd382-4eed-4bf7-8eba-46ec512e492c)
 
-OpenVigile is a vendor-agnostic Comprehensive Observability Stack that streamlines system, application and infrastructure observability. It incorporates industry standard frameworks, a unique performance based architecture and a suite of interactive tools.
+OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex and distributed systems that streamlines systems, applications and infrastructure observability. It incorporates industry standard frameworks, a unique performance based architecture and a suite of interactive tools.
 
 ### OpenVigile COS offers:
 - Observability for all telemetry signal types: **Logs, Metrics and Traces**
@@ -19,14 +19,25 @@ OpenVigile is a vendor-agnostic Comprehensive Observability Stack that streamlin
 - Single **aggregated API** to manage all signal types
 - A highly flexible **config based approach**
 
-## Hands-On:
-**OpenVigile Setup Wizard:**  http://openvigile.site
+## [Demo](http://demo.openvigile.site)
 
-**OpenVigile Demo:**  http://demo.openvigile.site
+#### OpenVigile Demo 🟢:  http://demo.openvigile.site
 
-**OpenVigile Wizard API:**  http://api.openvigile.site
+The demo provides a perspective to the working of OpenVigile. It rightfully represents the capabilities of OpenVigile and prooves its high scalability due to its microservices inheritence.
+![ov2_page-00012](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/25d7b30b-41be-4c0a-9716-fbeaded4224f)
 
-## Installation
+As a signal source we use a highly instrumented cluster of applications and services from OpenTelemetry, can be [found here](https://github.com/open-telemetry/opentelemetry-demo).
+With a kafka distributed messaging queue, we direct all these signals to a specific port which the OpenVigile Agent will listen to. Signals when recieved by the agent are published to the OpenVigile CollectorStack in real time. The CollectorStack is a curated collection of frameworks and platforms for injesting, processing/transforimg, visualizing and analyzing of the data. It provides a powerfull API and Dashboard to access, retrieve or analyze data.
+
+
+
+## Setup:
+
+#### OpenVigile Setup Wizard 🟢: http://openvigile.site
+
+#### OpenVigile Wizard API 🟢:  http://api.openvigile.site
+
+## Installation 🛠
 
 One of the unique proposition of OpenVigile is it's easy setup and installation process. It offers 2 methods, based on specific use cases:
 
@@ -109,7 +120,46 @@ Manual setup is the same verbose and traditional method.
    ```sh
    docker compose up --no-build -d
    ```
-   You can now access the services that you included and on the ports you mentioned in the config files and compose.
+   You can now access the services that you included on the ports you mentioned in the config files and compose.
 
 ## Architecture
-![Blank diagram (1)](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/b014c95a-c8b6-4733-a132-3dc27d948c33)
+![Blank diagram (2)](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/12ee1cc4-e367-43e8-9aae-bffa51561b9a)
+
+
+## Tech Stack:
+
+- ##### OpenVigile - Agent
+   - Docker & Docker Compose
+   - Grafana Agent
+   - River Config
+
+- ##### OpenVigile - CollectorStack
+   - Docker & Docker Compose
+   - OpenTelemetry Collector
+   - Prometheus
+   - Elasticsearch
+   - Jaeger
+   - Grafana Provisioning, Datasources and Dashboard
+
+- ##### OpenVigile - CollectorStackAPI
+   - ExpressJS
+   - NodeJS
+   - JavaScript
+   - Docker and Dockerfile
+   - OpenTelemetry Collector
+   - YAML Parsing
+
+- ##### OpenVigile - Wizard
+   - NextJS
+   - ReactJS
+   - TypeScript
+   - Material UI (MUI)
+   - Bootstrap 5
+
+- ##### OpenVigile - WizardAPI
+   - Shell Script
+   - ExpressJS
+   - NodeJS
+   - JavaScript
+   - File System (fs)
+   - YAML Parsing
