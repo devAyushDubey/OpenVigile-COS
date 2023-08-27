@@ -1,0 +1,33 @@
+otelcol.receiver.otlp "SIGNAL1" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+
+  http {
+    endpoint = "0.0.0.0:PORT1"
+  }
+
+  output {
+    SIGNAL1 = [otelcol.exporter.otlphttp.default.input]
+  }
+}
+
+otelcol.receiver.otlp "SIGNAL2" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+
+  http {
+    endpoint = "0.0.0.0:PORT2"
+  }
+
+  output {
+    SIGNAL2 = [otelcol.exporter.otlphttp.default.input]
+  }
+}
+
+otelcol.exporter.otlphttp "default" {
+  client {
+    endpoint = "ADD"
+  }
+}

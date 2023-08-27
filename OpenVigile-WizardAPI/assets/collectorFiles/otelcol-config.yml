@@ -1,0 +1,40 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+        endpoint: "localhost:OTLP_PORT"
+
+processors:
+
+exporters:
+  logging:
+    verbosity: detailed
+  prometheus:
+    endpoint: 0.0.0.0:9464
+  elasticsearch/log:
+    endpoints: [http://elasticsearch:ELASTIC_PORT]
+    logs_index: my_log_index
+    sending_queue:
+      enabled: true
+      num_consumers: 20
+      queue_size: 1000
+  otlp:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: []
+      exporters: [prometheus,logging]
+    logs:
+      receivers: [otlp]
+      processors: []
+      exporters: [elasticsearch/log,logging]
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [otlp,logging]

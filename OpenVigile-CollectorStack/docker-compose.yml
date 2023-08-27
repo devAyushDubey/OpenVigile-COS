@@ -1,0 +1,136 @@
+version: '3.9'
+x-default-logging: &logging
+  driver: "json-file"
+  options:
+    max-size: "5m"
+    max-file: "2"
+
+networks:
+  default:
+    name: openvigile
+    driver: bridge
+
+services:
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.43.0
+    container_name: prometheus
+    command:
+      - --web.console.templates=/etc/prometheus/consoles
+      - --web.console.libraries=/etc/prometheus/console_librarie
+      - --storage.tsdb.retention.time=1h
+      - --config.file=/etc/prometheus/prometheus-config.yaml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+      - --web.route-prefix=/
+      - --enable-feature=exemplar-storage
+      - --web.listen-address=:8080
+    volumes:
+      - ./prometheus/prometheus-config.yaml:/etc/prometheus/prometheus-config.yaml
+    deploy:
+      resources:
+        limits:
+          memory: 2000M
+    ports:
+      - "8080:8080"
+    logging: *logging
+
+
+  elasticsearch:
+    image: elasticsearch:7.17.1
+    container_name: elasticsearch
+    ports:
+      - "9400:9400"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - http.port=9400
+    # attach: false
+    logging: *logging
+
+
+  grafana:
+    image: grafana/grafana:9.4.7
+    container_name: grafana
+    deploy:
+      resources:
+        limits:
+          memory: 100M
+    volumes:
+      - ./grafana/provisioning/datasources/:/etc/grafana/provisioning/datasources/
+    ports:
+      - "2345:2345"
+    environment:
+      - GF_SERVER_HTTP_PORT=2345
+    depends_on:
+      prometheus:
+        condition: service_started 
+    logging: *logging
+
+  jaeger:
+    image: jaegertracing/all-in-one
+    container_name: jaeger
+    command:
+      - "--memory.max-traces"
+      - "10000"
+      - "--query.base-path"
+      - "/jaeger/ui"
+      - "--prometheus.server-url"
+      - "http://prometheus:9090"
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+    restart: unless-stopped
+    ports:
+      - "16686:16686"                    # Jaeger UI
+      - "4317"                           # OTLP gRPC default port
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - METRICS_STORAGE_TYPE=prometheus
+    logging: *logging
+
+  otelcol:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-col
+    deploy:
+      resources:
+        limits:
+          memory: 2000M
+    restart: unless-stopped
+    command: [ "--config=/etc/otelcol-config.yml" ]
+    volumes:
+      - ./cert.crt:/cert.crt
+      - ./key.key:/key.key
+      - ./otelcollector/otelcol-config.yml:/etc/otelcol-config.yml
+    ports:
+      - "4317:4317"     # OTLP over gRPC receiver
+      - "4318:4318"     # OTLP over HTTP receiver
+      - "9464"          # Prometheus exporter
+      - "8888"          # metrics endpoint
+      - "4433:4433"
+    depends_on:
+      prometheus:
+        condition: service_started      
+      elasticsearch:
+        condition: service_started
+      grafana:
+        condition: service_started
+      jaeger:
+        condition: service_started
+    logging: *logging
+  
+  openvigileapi:
+    image: devayushdubey/openvigile:openvigileapi
+    container_name: openvigileapi
+    environment:
+      - API_PORT=6300
+      - LOGS=9200
+      - METRICS=9090
+    ports:
+      - "6300:6300"
+    depends_on:
+      otelcol:
+        condition: service_started 
+    logging: *logging

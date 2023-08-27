@@ -1,0 +1,26 @@
+receivers:
+  awsfirehose:
+    endpoint: 0.0.0.0:4433
+    record_type: cwmetrics
+    tls:
+      cert_file: cert.crt
+      key_file: key.key
+
+processors:
+
+exporters:
+  logging:
+    verbosity: detailed
+  prometheus:
+    endpoint: 0.0.0.0:9464
+    tls:
+      ca_file: cert.crt
+      cert_file: cert.crt
+      key_file: key.key
+
+service:
+  pipelines:
+    metrics:
+      receivers: [awsfirehose]
+      processors: []
+      exporters: [logging,prometheus]

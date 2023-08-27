@@ -1,0 +1,33 @@
+{
+  "name": "openvigilapi",
+  "version": "1.0.0",
+  "description": "Frontend API for OpenVigil Wizard",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devAyushDubey/OpenVigile-COS.git"
+  },
+  "keywords": [
+    "observability"
+  ],
+  "author": "Ayush Dubey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devAyushDubey/OpenVigile-COS/issues"
+  },
+  "homepage": "https://github.com/devAyushDubey/OpenVigile-COS#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "winston": "^3.10.0",
+    "yaml": "^2.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

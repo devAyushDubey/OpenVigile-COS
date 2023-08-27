@@ -1,0 +1,32 @@
+version: '3.9'
+
+x-default-logging: &logging
+  driver: "json-file"
+  options:
+    max-size: "5m"
+    max-file: "2"
+
+networks:
+  default:
+    name: opentelemetry-demo
+    external: true
+
+services:
+  
+  agent:
+    image: grafana/agent:latest
+    container_name: agent
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+    environment:
+      - AGENT_MODE=flow
+    command: [ "run", "--server.http.listen-addr=0.0.0.0:1234", "/etc/agent/config.river" ]
+    volumes:
+      - ./config:/etc/agent
+    ports:
+      - "4317"
+      - "4318"
+      - "12345:12345"
+    logging: *logging

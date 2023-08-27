@@ -1,0 +1,45 @@
+receivers:
+  awsfirehose:
+    endpoint: 0.0.0.0:4433
+    record_type: cwmetrics
+    tls:
+      cert_file: cert.crt
+      key_file: key.key
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+
+exporters:
+  logging:
+    loglevel: warn
+  prometheus:
+    endpoint: 0.0.0.0:9464
+  elasticsearch/log:
+    endpoints: [http://elasticsearch:9200]
+    logs_index: my_log_index
+    sending_queue:
+      enabled: true
+      num_consumers: 20
+      queue_size: 1000
+  otlp:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp,awsfirehose]
+      processors: []
+      exporters: [prometheus,logging]
+    logs:
+      receivers: [otlp]
+      processors: []
+      exporters: [elasticsearch/log,logging]
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [otlp,logging]
