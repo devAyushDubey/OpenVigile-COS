@@ -141,3 +141,7 @@ dist
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# openvigileapi
+assets/agent/
+assets/collector/
