@@ -22,8 +22,9 @@ OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex an
 ## [Demo](http://demo.openvigile.site)
 
 #### OpenVigile Demo 🟢:  http://demo.openvigile.site
+**Credentials are default grafana credentials.[Username: admin, Password: admin]**<br>
+The demo provides a perspective to the working of OpenVigile. It rightfully represents the capabilities of OpenVigile and prooves its high scalability due to its microservices inheritance.
 
-The demo provides a perspective to the working of OpenVigile. It rightfully represents the capabilities of OpenVigile and prooves its high scalability due to its microservices inheritence.
 ![ov2_page-00012](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/25d7b30b-41be-4c0a-9716-fbeaded4224f)
 
 As a signal source we use a highly instrumented cluster of applications and services from OpenTelemetry, can be [found here](https://github.com/open-telemetry/opentelemetry-demo).
