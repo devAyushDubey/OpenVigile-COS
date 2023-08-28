@@ -1,44 +1,48 @@
 # OpenVigile - COS 🔭
 > Made for Contentstack's TechSurf 2023 <br> 
 > Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By Ayush Dubey (GSoC' 23 @ 52 North)
+> By Ayush Dubey (GSoC' 23 @ 52° North)
 
 ![OpenVigile](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/e22bd382-4eed-4bf7-8eba-46ec512e492c)
 
-OpenVigile is a vendor-agnostic Comprehensive Observability Stack that streamlines system, application and infrastructure observability. It incorporates an industry standard frameworks, a unique performance based architecture and a suite of interactive tools.
+OpenVigile is a vendor-agnostic Comprehensive Observability Stack that streamlines system, application and infrastructure observability. It incorporates industry standard frameworks, a unique performance based architecture and a suite of interactive tools.
 
 ### OpenVigile COS offers:
-- Observability for all telemetry signal types: Logs, Metrics and Traces
-- Vendor Independent Signal Injestion
-- Industry standard OpenTelemetry based observability pipelines
-- High scalability, as it is curated entirely on cloud native microservices architecture
-- A Single extremely powerfull dashboard for all data sources
-- A highly interactive GUI setup environment
-- Best-in-class query handling due to it's unique performance centric architecture
-- Easy single-step setup option
-- Single aggregated API to manage all signal types
-- A highly flexible config based approach
+- Observability for all telemetry signal types: **Logs, Metrics and Traces**
+- **Vendor Independent** Signal Injestion
+- **Industry standard OpenTelemetry** based observability pipelines
+- **High scalability**, as it is curated entirely on cloud native microservices architecture
+- A Single extremely **powerfull dashboard** for all data sources
+- A highly interactive **GUI setup environment**
+- Extremely **fast query handling** due to its unique performance centric architecture
+- Easy **single-step setup** option
+- Single **aggregated API** to manage all signal types
+- A highly flexible **config based approach**
 
 ## Hands-On:
-OpenVigile Setup Wizard: http://openvigile.site
+**OpenVigile Setup Wizard:**  http://openvigile.site
 
-OpenVigile Demo: http://demo.openvigile.site
+**OpenVigile Demo:**  http://demo.openvigile.site
 
-OpenVigile Wizard API: http://api.openvigile.site
+**OpenVigile Wizard API:**  http://api.openvigile.site
 
 ## Installation
 
-One of the highlights of OpenVigile is it's easy setup and installation process. It offers 2 methods, based on specific use cases:
-- Single Command Setup: Fixed ports and frameworks. Less Flexibility.
-- Setup Wizard and API (Recommended): Custom ports and use-case specific architecture. More Flexibility.
-- Manual Setup: Custom ports and custom archiecture. Config based setup offers best flexibility.
+One of the unique proposition of OpenVigile is it's easy setup and installation process. It offers 2 methods, based on specific use cases:
+
+- **Single Command Setup:** Fixed ports and frameworks. Less Flexibility.
+  
+- **Setup Wizard and API _(Recommended)_:** Custom ports and use-case specific architecture. More Flexibility.
+  
+- **Manual Setup:** Custom ports and custom archiecture. Config based setup offers best flexibility.
 
 ### Pre-requisites:
+
 1. Docker and Docker Compose
 2. Sudo Privileges
-3. In case of AWS CloudWatch:<br>
+3. **In case of AWS CloudWatch:**<br>
    The instance that will host OpenVigile Collector Stack must have SSL certificates for injesting CloudWatch metrics and logs streams as per the AWS policies.
-4. In case of application observability:
+4. **In case of application observability:**<br>
    As OpenVigile is based on OpenTelemetry, for it to observe an application it must be Intrumented to emit signals in OpenTelemetry formats and protocols. [See how you can instrument your application](https://opentelemetry.io/docs/instrumentation/)
 
 ### 1. Single Command Setup
