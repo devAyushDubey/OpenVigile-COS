@@ -5,14 +5,14 @@
 
 ![OpenVigile](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/e22bd382-4eed-4bf7-8eba-46ec512e492c)
 
-OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex and distributed systems that streamlines systems, applications and infrastructure observability. It incorporates industry standard frameworks, a unique performance based architecture and a suite of interactive tools.
+OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex and distributed systems that streamlines systems, applications and infrastructure observability. It incorporates industry standard frameworks, a unique performance-based architecture and a suite of interactive tools.
 
 ### OpenVigile COS offers:
 - Observability for all telemetry signal types: **Logs, Metrics and Traces**
-- **Vendor Independent** Signal Injestion
+- **Vendor Independent** Signal Ingestion
 - **Industry standard OpenTelemetry** based observability pipelines
-- **High scalability**, as it is curated entirely on cloud native microservices architecture
-- A Single extremely **powerfull dashboard** for all data sources
+- **High scalability**, as it is curated entirely on cloud-native microservices architecture
+- A Single extremely **powerful dashboard** for all data sources
 - A highly interactive **GUI setup environment**
 - Extremely **fast query handling** due to its unique performance centric architecture
 - Easy **single-step setup** option
@@ -23,12 +23,12 @@ OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex an
 
 #### OpenVigile Demo 🟢:  http://demo.openvigile.site
 **Credentials are default grafana credentials.[Username: admin, Password: admin]**<br>
-The demo provides a perspective to the working of OpenVigile. It rightfully represents the capabilities of OpenVigile and prooves its high scalability due to its microservices inheritance.
+The demo provides a perspective to the working of OpenVigile. It rightfully represents the capabilities of OpenVigile and proves its high scalability due to its microservices inheritance.
 
 ![ov2_page-00012](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/25d7b30b-41be-4c0a-9716-fbeaded4224f)
 
-As a signal source we use a highly instrumented cluster of applications and services from OpenTelemetry, can be [found here](https://github.com/open-telemetry/opentelemetry-demo).
-With a kafka distributed messaging queue, we direct all these signals to a specific port which the OpenVigile Agent will listen to. Signals when recieved by the agent are published to the OpenVigile CollectorStack in real time. The CollectorStack is a curated collection of frameworks and platforms for injesting, processing/transforimg, visualizing and analyzing of the data. It provides a powerfull API and Dashboard to access, retrieve or analyze data.
+As a signal source we use a highly instrumented cluster of applications and services from OpenTelemetry, which can be [found here](https://github.com/open-telemetry/opentelemetry-demo).
+With a kafka distributed messaging queue, we direct all these signals to a specific port which the OpenVigile Agent will listen to. Signals when received by the agent are published to the OpenVigile CollectorStack in real time. The CollectorStack is a curated collection of frameworks and platforms for ingesting, processing/transforming, visualizing and analyzing of the data. It provides a powerful API and Dashboard to access, retrieve or analyze data.
 
 
 
@@ -46,7 +46,7 @@ One of the unique proposition of OpenVigile is it's easy setup and installation 
   
 - **Setup Wizard and API _(Recommended)_:** Custom ports and use-case specific architecture. More Flexibility.
   
-- **Manual Setup:** Custom ports and custom archiecture. Config based setup offers best flexibility.
+- **Manual Setup:** Custom ports and custom architecture. Config-based setup offers the best flexibility.
 
 ### Pre-requisites:
 
@@ -55,13 +55,13 @@ One of the unique proposition of OpenVigile is it's easy setup and installation 
 3. **In case of AWS CloudWatch:**<br>
    The instance that will host OpenVigile Collector Stack must have SSL certificates for injesting CloudWatch metrics and logs streams as per the AWS policies.
 4. **In case of application observability:**<br>
-   As OpenVigile is based on OpenTelemetry, for it to observe an application it must be Intrumented to emit signals in OpenTelemetry formats and protocols. [See how you can instrument your application](https://opentelemetry.io/docs/instrumentation/)
+   As OpenVigile is based on OpenTelemetry, for it to observe an application it must be Instrumented to emit signals in OpenTelemetry formats and protocols. [See how you can instrument your application](https://opentelemetry.io/docs/instrumentation/)
 
 ### 1. Single Command Setup
 1. In your Instrumented application, change the publish port of the OpenTelemetry (OTLP) signals to 4318.
 2. On your instance that hosts the instrumented application, run the following command:
    ```sh
-   source <(curl -s http://api.openvigile.site/agent/script)
+   source <(curl -s http://api.openvigile.site/agent/script?address=OV_COLLECTOR_ADDRESS)
    ```
    Replace `OV_COLLECTOR_ADDRESS` with the instance's address where you wish to host OpenVigile Collector Stack. Example: http://142.95.32.XXX:4318 <br>
    This will download and install Grafana Agent with a pre-baked configuration provided by OpenVigile that listens for OTLP signals on port 4318. The agent will communicate with the OpenVigile Collector Stack on your provided address. See architectural details here.
@@ -104,7 +104,7 @@ Manual setup is the same verbose and traditional method.
    ```sh
    docker compose up -d
    ```
-   Do not forget to change to your desired port and enter you OpenVigile Collector Stack's address in the cofiguration files.
+   Do not forget to change to your desired port and enter your OpenVigile Collector Stack's address in the configuration files.
 
 #### Collector Stack:
 
