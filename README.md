@@ -1,8 +1,3 @@
-# OpenVigile - COS 🔭
-> Made for Contentstack's TechSurf 2023 <br> 
-> Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By [Ayush Dubey](https://ayushdubey.carrd.co/) (GSoC' 23 @ 52° North)
-
 ![OpenVigile](https://github.com/devAyushDubey/OpenVigile-COS/assets/33064931/e22bd382-4eed-4bf7-8eba-46ec512e492c)
 
 OpenVigile is a vendor-agnostic Comprehensive Observability Stack for complex and distributed systems that streamlines systems, applications and infrastructure observability. It incorporates industry standard frameworks, a unique performance-based architecture and a suite of interactive tools.
