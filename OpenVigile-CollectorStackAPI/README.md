@@ -1,7 +1,4 @@
 # OpenVigile - CollectorStackAPI 🖧
-> Made for Contentstack's TechSurf 2023 <br> 
-> Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By [Ayush Dubey](https://ayushdubey.carrd.co/) (GSoC' 23 @ 52° North)
 
 With separate handling of Logs, Metrics and Traces for better performance, we are introduced with three different APIs with three different endpoints for accessing data. CollectorStackAPI focuses exactly on this issue. It provides a single interface by aggregating all the other API endpoints and providing a common address for the three. This also has future prospects of taking up the role of an API gateway.
 
