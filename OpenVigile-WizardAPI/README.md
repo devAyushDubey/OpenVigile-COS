@@ -1,7 +1,4 @@
 # OpenVigile - WizardAPI 🖧
-> Made for Contentstack's TechSurf 2023 <br> 
-> Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By [Ayush Dubey](https://ayushdubey.carrd.co/) (GSoC' 23 @ 52° North)
 
 The Wizard API creates and delivers configuration and installation files necessary for the Single-Command and Interactive Wizard installation of the OpenVigile stack. It is capable of generating for bash scripts, docker-compose and config files for a wide range of use cases, with custom ports, signal types and other configuration choices. It is what provides a quick setup process to the rather complex structure of OpenVigile stack. The Wizard API complements the Wizard Frontend.
 
