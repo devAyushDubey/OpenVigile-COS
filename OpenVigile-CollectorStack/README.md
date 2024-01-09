@@ -1,7 +1,4 @@
 # OpenVigile - CollectorStack 📚
-> Made for Contentstack's TechSurf 2023 <br> 
-> Problem Statement-3 : A Scalable Log Aggregator Service <br>
-> By [Ayush Dubey](https://ayushdubey.carrd.co/) (GSoC' 23 @ 52° North)
 
 OpenVigile CollectorStack is a well thought out and architected cluster of frameworks and tools that aid in observing large scale systems. It has been designed on the premises of a deep mapping of industry frameworks based on their performance in handling different telemetry signals, their strengths and weakness, with an ultimate goal of delivering high performance signal retrievals, visualizations and analytics.
 
